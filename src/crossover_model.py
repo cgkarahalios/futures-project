@@ -159,8 +159,8 @@ def walk_forward_predictions(
             (FEATURES, "p_model"),
         ):
             clf = _classifier()
-            clf.fit(train[list(fields)], train[target].astype(int))
-            test[output_column] = clf.predict_proba(test[list(fields)])[:, 1]
+            clf.fit(train[list(fields)].astype(float), train[target].astype(int))
+            test[output_column] = clf.predict_proba(test[list(fields)].astype(float))[:, 1]
 
         test["horizon"] = horizon
         test["train_rolls"] = len(completed)
