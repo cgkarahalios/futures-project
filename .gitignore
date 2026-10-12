@@ -1,0 +1,16 @@
+# API keys and secrets
+config.py
+.env
+
+# Data (too large for git)
+data/raw/
+data/processed/
+!data/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
