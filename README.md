@@ -166,6 +166,15 @@ We compare model-timed rolls against the baselines by the **distribution of roll
 
 ## Running the Project
 
+For the corrected crossover timing comparison from Issue #20, run
+`python -m src.timing_model` after generating the roll panel with notebook 02.
+Alternatively, open `notebooks/09_improve_crossover_timing.ipynb` in Jupyter
+and run all cells to view the comparisons directly in the notebook.
+This uses existing data without downloading anything and writes comparisons,
+a date audit, and a figure under `results/issue-20/`. The historical-median
+baseline remains preferred on the current sample. See
+[model comparison and limitations](docs/issue-20-model-improvements.md).
+
 Use Python 3.10+ and run these commands from the repository root:
 
 ```bash
