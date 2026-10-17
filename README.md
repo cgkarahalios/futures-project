@@ -4,7 +4,7 @@ This repository contains our team's final project: an analysis of how trading li
  
 All market data comes from **Databento's CME Globex MDP 3.0 dataset (`GLBX.MDP3`)**.
  
-> **Status:** Planning (Week 1). The goals, data plan, and run instructions below describe what we intend to build. Commands marked *(planned)* do not exist yet and will be implemented through the repository's open Issues.
+> **Status:** Data preparation and prediction notebooks (01–07) are implemented. Execution backtesting remains in progress. Downloaded data and numerical results are not committed.
 
 ---
 
@@ -166,10 +166,34 @@ We compare model-timed rolls against the baselines by the **distribution of roll
 
 ## Running the Project
 
-Instructions for running the project will be added as the project is developed.
+Use Python 3.10+ and run these commands from the repository root:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r requirements-workflow.txt
+export DATABENTO_API_KEY=...  # Windows PowerShell: $env:DATABENTO_API_KEY="..."
+python scripts/run_pipeline.py --dry-run
+python scripts/run_pipeline.py
+```
+
+The full run executes notebooks 01 through 07 in order, always using
+`notebooks/` as the working directory. Notebook 01 downloads historical
+Databento data and may incur charges; check dataset access and estimated costs
+before running it. Data is cached in the git-ignored `data/raw/` and
+`data/processed/` directories.
+
+To reuse downloaded raw data without calling Databento again:
+
+```bash
+python scripts/run_pipeline.py --start-at 2
+```
+
+To run a smaller section, use `--start-at N --stop-at M` (1 through 7).
+Later stages require the previous stages' Parquet outputs. The existing data
+notebook covers 2020–2026, not the longer 2010–2026 span proposed above.
+The workflow has not yet been validated against a full downloaded dataset.
 
 ## Project Status
 
-**Current stage:** Project planning and topic selection.
-
-The README and repository structure will be updated as our team finalizes the project scope and begins development.
+**Current stage:** Notebooks 01–07 implemented. Predictive evaluation is ready for data validation; execution-cost analysis remains open.
